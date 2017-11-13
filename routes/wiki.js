@@ -1,19 +1,28 @@
+var models = require('../models');
+var Page = models.Page;
+var User = models.User;
 const express = require('express')
 const router = express.Router();
 
-const wikiRouter = require('./wiki');
-const userRouter = require('./user');
-
-router.use('/wiki', wikiRouter);
+module.exports = router
 
 router.get('/', function(req, res, next) {
-  res.send('got to GET /wiki/');
+  res.redirect('/');
 });
 
 router.post('/', function(req, res, next) {
-  res.send('got to POST /wiki/');
+  console.log('req.body: ', req.body);
+  var title = req.body.title;
+  var content = req.body.content;
+  var page = Page.build({
+    title : title,
+    content : content
+  });
+  page.save();
+  res.redirect('/');
+  //res.json(req.body);
 });
 
 router.get('/add', function(req, res, next) {
-  res.send('got to GET /wiki/add');
+  res.render('addpage');
 });

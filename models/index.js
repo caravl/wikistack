@@ -19,11 +19,11 @@ const Page = db.define('page', {
   status: {
     type: Sequelize.ENUM,
     values: ['open', 'closed']
-  },
-  date: {
-    type: Sequelize.DATE,
-    defaultValue: Sequelize.NOW
   }
+  // date: {
+  //   type: Sequelize.DATE,
+  //   defaultValue: Sequelize.NOW
+  // }
 },
 {
   getterMethods: {

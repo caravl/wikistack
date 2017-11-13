@@ -3,16 +3,17 @@ var morgan = require('morgan')
 var bodyParser = require('body-parser')
 var nunjucks = require('nunjucks')
 var models = require('./models')
-var routes = require('./routes')
+var router = require('./routes')
 
 var app = express()
 
-module.export = app;
+app.use(bodyParser())
+    // .use(express.methodOverride())
+    // .use(app.router)
+// app.use(bodyParser.urlencoded({extended: false}))
+// direct routes to routes folder
+app.use('/', router)
 
-// var Sequelize = require('sequelize');
-// var db = new Sequelize('postgres://localhost:5432/wikistack', {
-//   logging: false
-// })
 
 // point nunjucks to the directory containing templates and turn off caching; configure returns an Environment
 // instance, which we'll want to use to add Markdown support later.
