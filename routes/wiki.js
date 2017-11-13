@@ -19,8 +19,9 @@ router.post('/', function(req, res, next) {
     content : content
   });
   page.save();
-  res.redirect('/');
-  //res.json(req.body);
+  //res.redirect('/');
+  console.log(title, page.urlTitle)
+  res.json(req.body);
 });
 
 router.get('/add', function(req, res, next) {

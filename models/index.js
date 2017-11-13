@@ -31,7 +31,19 @@ const Page = db.define('page', {
       return '/wiki/' + this.urlTitle
     }
   }
-})
+},
+{
+  hooks: {
+    beforeValidate: (title) => {
+      if (title) {
+        page.urlTitle = title.replace(/ /g, "_").replace(/\W/, '');
+      } else {
+        page.urlTitle = Math.random().toString(36).substring(2,7);
+      }
+    }
+  }
+});
+
 
 const User = db.define('user', {
   name: {
